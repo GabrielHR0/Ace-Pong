@@ -1,2 +1,2 @@
 # Ace-Pong
-Jogo de ping-pong para trabalho da diciplina de laboratório de introdução a computação
+Jogo de ping-pong para o projeto da disciplina de Laboratório de Introdução à Programação.
