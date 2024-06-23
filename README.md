@@ -1,6 +1,2 @@
 # Ace-Pong
-#include <stdio.h>
-int main(){
-
-  return 0;
-}
+Jogo de ping-pong para trabalho da diciplina de laboratório de introdução a computação
