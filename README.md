@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Jogo em C
 
 ## Descrição
@@ -26,3 +27,7 @@ ou o outro jogador
 ### Compilação
 ...
 
+=======
+# Ace-Pong
+Jogo de ping-pong para o projeto da disciplina de Laboratório de Introdução à Programação.
+>>>>>>> a7aef5830dc8379f86278b1135ea61ef5ce618eb
