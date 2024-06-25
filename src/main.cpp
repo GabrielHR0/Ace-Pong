@@ -1,6 +1,8 @@
 #include <raylib.h>
 #include <iostream>
 
+using namespace std;
+
 //------------------------------------------------------------------------------------
 // Ponto de entrada da main do programa
 //------------------------------------------------------------------------------------
@@ -8,8 +10,8 @@ int main(void)
 {
     // Inicialização
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 854;
+    const int screenHeight = 480;
 
     InitWindow(screenWidth, screenHeight, "Ace Pong");
 
@@ -19,7 +21,7 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detecta o botão de fechar janela ou a tecla ESC
     {
-        // Eventos
+        // Events
         //----------------------------------------------------------------------------------
         
         //----------------------------------------------------------------------------------
@@ -33,9 +35,13 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(DARKGRAY);
+            DrawCircle(screenWidth/2, screenHeight/2, 10, WHITE);
+            DrawRectangle(10, screenHeight/2 - 30, 15, 60, WHITE);
+            DrawRectangle(screenWidth - 25, screenHeight/2 - 30, 15, 60, WHITE);
+            DrawLine(screenWidth/2, 0, screenWidth/2, screenHeight, WHITE);
 
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+
 
         EndDrawing();
         //----------------------------------------------------------------------------------
