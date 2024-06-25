@@ -5,7 +5,7 @@ Este projeto é um jogo desenvolvido em C para a disciplina de Laboratório de I
 
 ## Integrantes
 - Gabriel Henrique Oliveira Jales Ramalho
-- Alex
+- Alex Cristhian Lima de Medeiros
 - Felipe Rezes
 
 ## Objetivo do Jogo
