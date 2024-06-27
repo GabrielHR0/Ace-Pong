@@ -18,7 +18,7 @@ class Ball {
         void Draw();
         void Update(int screenWidth, int screenHeight);
         void Reset(int screenWidth, int screenHeight);
-        void Ace(string side);
+        void ResetSpeed(string side);
 };
 
 #endif // BALL_H
