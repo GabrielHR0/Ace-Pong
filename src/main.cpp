@@ -1,12 +1,14 @@
-#include <raylib.h>
-#include <iostream>
-#include <cmath>
-#include "ball.h"
-#include "player.h"
-#include "bot.h"
+#include <raylib.h> // Inclusão para o desenvolvimento dos objetos na tela.
+#include <iostream> // Biblioteca padrão do C++.
+#include <cmath> // Inclusão para calcular o posicionamento da bola e das raquetes.
+#include <windows.h> // Criação de janelas para o menu.
+#include "ball.h" // Acesso ao cabeçalho ball.h.
+#include "player.h" // Acesso ao cabeçalho player.h.
+#include "bot.h" // Acesso ao cabeçalho bot.h.
 #include "secondplayer.h"
 using namespace std;
 
+// Desenho da linha que divide a área do bot e do jogador.
 void DrawDashedLine(int startx, int starty, int endy, int dashLength, int spaceLength, Color color){
     for(int y = starty; y < endy; y += dashLength + spaceLength){
         DrawLine(startx, y, startx, y + dashLength, WHITE);
@@ -20,10 +22,11 @@ void DrawDashedLine(int startx, int starty, int endy, int dashLength, int spaceL
 int main(void){
     // Inicialização
     //--------------------------------------------------------------------------------------
+    // Tamanho da tela:
     const int screenWidth = 854;
     const int screenHeight = 480;
 
-    InitWindow(screenWidth, screenHeight, "Ace Pong");
+    InitWindow(screenWidth, screenHeight, "Ace Pong"); // Nome da janela.
 
     SetTargetFPS(60);               // Definir o jogo para rodar a 60 fps
     //--------------------------------------------------------------------------------------
@@ -44,7 +47,7 @@ int main(void){
             float playerCenterY = playerPaddle.pos_y + playerPaddle.height / 2;
             ball.speed_y = (ball.pos_y - playerCenterY) / (playerPaddle.height / 2) * -5;
             
-            // Se a colisão for exatamente no meio da raquete, fazer a bola ir reta
+            // A bola faz a trajetória reta se atingir o meio da raquete.
             if (ball.pos_y == playerCenterY) {
                 ball.speed_y = 1;
             }
@@ -70,17 +73,17 @@ int main(void){
 
         // Update
         //----------------------------------------------------------------------------------
-        ball.Update(screenWidth, screenHeight);
-        playerPaddle.Update(screenHeight);
-        botPaddle.Update(ball.pos_y);
+        ball.Update(screenWidth, screenHeight); // Atualização da posição da bola, seguindo os parâmetros do tamanho vertical e horizontal da tela.
+        playerPaddle.Update(screenHeight); // Raquete do player é atualizada a partir da orientação vertical da bola.
+        botPaddle.Update(ball.pos_y); // O bot se move a partir da posição vertical da bola.
         //secondplayerPaddle.Update(screenHeight);
 
         //----------------------------------------------------------------------------------
 
-        // Draw
+        // Desenho dos objetos:
         //----------------------------------------------------------------------------------
         BeginDrawing();
-
+        
             ClearBackground(DARKGRAY);
             DrawLine(screenWidth / 2, 0, screenWidth / 2, screenHeight, WHITE);
             DrawDashedLine(screenWidth / 2, -4, screenHeight, 14, 11, WHITE);
