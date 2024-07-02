@@ -31,8 +31,8 @@ int main(void){
     // Criação dos objetos
     Ball ball(screenWidth/2, screenHeight/2, 5, 5, 5, WHITE);
     Player playerPaddle(screenWidth - 30, screenHeight/2 - 25, 10, 10, 50, WHITE);
-    //Secondplayer secondplayerPaddle(screenWidth - 30, screenHeight/2 - 25, 10, 10, 50, WHITE);
-    Bot botPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
+    Secondplayer secondplayerPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
+    //Bot botPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
 
     // Main game loop
     while (!WindowShouldClose())    // Detecta o botão de fechar janela ou a tecla ESC
@@ -50,8 +50,19 @@ int main(void){
             }
             ball.pos_x = playerPaddle.pos_x - ball.radius - 1;
         }
+        if(CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{secondplayerPaddle.pos_x, secondplayerPaddle.pos_y, (float)secondplayerPaddle.width, (float)secondplayerPaddle.height})) {
+            ball.speed_x *= -1;
+            float secondplayerCenterY = secondplayerPaddle.pos_y + secondplayerPaddle.height / 2;
+            ball.speed_y = (ball.pos_y - secondplayerCenterY) / (secondplayerPaddle.height / 2) * -5;
+            
+            // Se a colisão for exatamente no meio da raquete, fazer a bola ir reta
+            if (ball.pos_y == secondplayerCenterY) {
+                ball.speed_y = 1;
+            }
+            ball.pos_x = secondplayerPaddle.pos_x + ball.radius + 1;
+        }
 
-        if (CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{botPaddle.pos_x, botPaddle.pos_y, (float)botPaddle.width, (float)botPaddle.height})) {
+        /*if (CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{botPaddle.pos_x, botPaddle.pos_y, (float)botPaddle.width, (float)botPaddle.height})) {
             ball.speed_x *= -1;
             float botCenterY = botPaddle.pos_y + botPaddle.height / 2;
             ball.speed_y = (ball.pos_y - botCenterY) / (botPaddle.height / 2) * -5;
@@ -64,6 +75,7 @@ int main(void){
             // Ajusta a posição da bola para fora da raquete para evitar múltiplas detecções
             ball.pos_x = botPaddle.pos_x + botPaddle.width / 2 + ball.radius + 1;
         }
+        */
        
         cout << playerPaddle.pos_y << endl;
         //----------------------------------------------------------------------------------
@@ -72,8 +84,8 @@ int main(void){
         //----------------------------------------------------------------------------------
         ball.Update(screenWidth, screenHeight);
         playerPaddle.Update(screenHeight);
-        botPaddle.Update(ball.pos_y);
-        //secondplayerPaddle.Update(screenHeight);
+        //botPaddle.Update(ball.pos_y);
+        secondplayerPaddle.Update(screenHeight);
 
         //----------------------------------------------------------------------------------
 
@@ -84,10 +96,10 @@ int main(void){
             ClearBackground(DARKGRAY);
             DrawLine(screenWidth / 2, 0, screenWidth / 2, screenHeight, WHITE);
             DrawDashedLine(screenWidth / 2, -4, screenHeight, 14, 11, WHITE);
-            botPaddle.Draw();
+            //botPaddle.Draw();
             playerPaddle.Draw();
             ball.Draw();
-            //secondplayerPaddle.Draw();
+            secondplayerPaddle.Draw();
 
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-/*
+
 #ifndef SECONDPLAYER_H
 #define SECONDPLAYER_H
 #include <raylib.h>
@@ -17,4 +17,3 @@ class Secondplayer {
 };
 
 #endif
-*/

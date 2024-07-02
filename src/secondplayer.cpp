@@ -1,4 +1,4 @@
-/*#include "secondplayer.h"
+#include "secondplayer.h"
 
 Secondplayer::Secondplayer(float x, float y,  int s, int w, int h, Color c){
     pos_x = x;
@@ -23,4 +23,3 @@ void Secondplayer::Update(int screenHeight){
         pos_y += speed;
     }
 }
-*/
