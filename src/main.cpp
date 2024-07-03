@@ -1,22 +1,29 @@
 #include <raylib.h>
 #include <iostream>
-<<<<<<< HEAD
-#include "ball.h"
-#include "player.h"
-
-=======
 #include <cmath>
 #include "ball.h"
 #include "player.h"
 #include "bot.h"
 #include "secondplayer.h"
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
+#include <sstream>
+
 using namespace std;
 
 void DrawDashedLine(int startx, int starty, int endy, int dashLength, int spaceLength, Color color){
     for(int y = starty; y < endy; y += dashLength + spaceLength){
         DrawLine(startx, y, startx, y + dashLength, WHITE);
     }
+}
+
+
+void DrawPoints(int screenWidth, Player player1, Secondplayer player2){
+    DrawText(TextFormat("Player 1 Points: %i", player1.GetPoints()), screenWidth - 200, 10, 20, WHITE);
+    DrawText(TextFormat("Player 2 Points: %i", player2.GetPoints()), 10, 10, 20, WHITE);
+
+}
+
+void DrawTime(int time, int screenWidth){
+    DrawText(TextFormat("%i", time), screenWidth/2 - 20, 20, 40, WHITE);
 }
 
 
@@ -36,61 +43,39 @@ int main(void){
 
     // Criação dos objetos
     Ball ball(screenWidth/2, screenHeight/2, 5, 5, 5, WHITE);
-    Player playerPaddle(screenWidth - 30, screenHeight/2 - 25, 10, 10, 50, WHITE);
-<<<<<<< HEAD
-    Player secondplayerPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
-=======
-    Secondplayer secondplayerPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
+    Player playerPaddle(screenWidth - 30, screenHeight/2 - 25, 10, 10, 50, WHITE, 0);
+    Secondplayer secondplayerPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE, 0);
     //Bot botPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
 
     // Main game loop
     while (!WindowShouldClose())    // Detecta o botão de fechar janela ou a tecla ESC
     {
         // Events
         //----------------------------------------------------------------------------------
+        int time = GetTime();
+        
+
         if(CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{playerPaddle.pos_x, playerPaddle.pos_y, (float)playerPaddle.width, (float)playerPaddle.height})) {
             ball.speed_x *= -1;
             float playerCenterY = playerPaddle.pos_y + playerPaddle.height / 2;
-<<<<<<< HEAD
             ball.speed_y = (ball.pos_y - playerCenterY) / (playerPaddle.height / 2) * 5;
             
             // Se a colisão for exatamente no meio da raquete, fazer a bola ir reta
             if (ball.pos_y == playerCenterY) {
                 ball.speed_y = 0;
-=======
-            ball.speed_y = (ball.pos_y - playerCenterY) / (playerPaddle.height / 2) * -5;
-            
-            // Se a colisão for exatamente no meio da raquete, fazer a bola ir reta
-            if (ball.pos_y == playerCenterY) {
-                ball.speed_y = 1;
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
             }
             ball.pos_x = playerPaddle.pos_x - ball.radius - 1;
         }
+        
         if(CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{secondplayerPaddle.pos_x, secondplayerPaddle.pos_y, (float)secondplayerPaddle.width, (float)secondplayerPaddle.height})) {
-            ball.speed_x *= -1;
-<<<<<<< HEAD
-            float secondPlayerCenterY = secondplayerPaddle.pos_y + secondplayerPaddle.height / 2;
-            ball.speed_y = (ball.pos_y - secondPlayerCenterY) / (secondplayerPaddle.height / 2) * 5;
-            
-            // Se a colisão for exatamente no meio da raquete, fazer a bola ir reta
-            if (ball.pos_y == secondPlayerCenterY) {
-                ball.speed_y = 0;
-            }  
-            ball.pos_x = secondplayerPaddle.pos_x + secondplayerPaddle.width + ball.radius + 1;
-        }
-
-=======
-            float secondplayerCenterY = secondplayerPaddle.pos_y + secondplayerPaddle.height / 2;
-            ball.speed_y = (ball.pos_y - secondplayerCenterY) / (secondplayerPaddle.height / 2) * -5;
-            
-            // Se a colisão for exatamente no meio da raquete, fazer a bola ir reta
-            if (ball.pos_y == secondplayerCenterY) {
-                ball.speed_y = 1;
-            }
-            ball.pos_x = secondplayerPaddle.pos_x + ball.radius + 1;
-        }
+             ball.speed_x *= -1;
+                    float secondplayerCenterY = secondplayerPaddle.pos_y + secondplayerPaddle.height / 2;
+                    ball.speed_y = (ball.pos_y - secondplayerCenterY) / (secondplayerPaddle.height / 2) * 5;
+                    if (ball.pos_y == secondplayerCenterY) {
+                        ball.speed_y = 0;
+                    }
+                    ball.pos_x = secondplayerPaddle.pos_x + secondplayerPaddle.width + ball.radius + 1;
+                }
 
         /*if (CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{botPaddle.pos_x, botPaddle.pos_y, (float)botPaddle.width, (float)botPaddle.height})) {
             ball.speed_x *= -1;
@@ -105,20 +90,25 @@ int main(void){
             // Ajusta a posição da bola para fora da raquete para evitar múltiplas detecções
             ball.pos_x = botPaddle.pos_x + botPaddle.width / 2 + ball.radius + 1;
         }
+
         */
-       
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
-        cout << playerPaddle.pos_y << endl;
+        // Verificação de pontos
+        char point = ball.Point(screenWidth, screenHeight);
+        if (point == 'l'){
+            secondplayerPaddle.IncreasePoints(); // Aumenta os pontos do jogador esquerdo
+        } else if (point == 'r'){
+            playerPaddle.IncreasePoints(); // Aumenta os pontos do jogador direito
+        }
+        cout << playerPaddle.points << endl;
+
         //----------------------------------------------------------------------------------
 
         // Update
         //----------------------------------------------------------------------------------
         ball.Update(screenWidth, screenHeight);
+        
         playerPaddle.Update(screenHeight);
-<<<<<<< HEAD
-=======
         //botPaddle.Update(ball.pos_y);
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
         secondplayerPaddle.Update(screenHeight);
 
         //----------------------------------------------------------------------------------
@@ -128,19 +118,13 @@ int main(void){
         BeginDrawing();
 
             ClearBackground(DARKGRAY);
-<<<<<<< HEAD
             DrawDashedLine(screenWidth / 2, -4, screenHeight, 14, 11, WHITE);
-            secondplayerPaddle.Draw();
-            playerPaddle.Draw();
-            ball.Draw();
-=======
-            DrawLine(screenWidth / 2, 0, screenWidth / 2, screenHeight, WHITE);
-            DrawDashedLine(screenWidth / 2, -4, screenHeight, 14, 11, WHITE);
+            DrawTime(time, screenWidth);
+            DrawPoints(screenWidth, playerPaddle, secondplayerPaddle);
             //botPaddle.Draw();
             playerPaddle.Draw();
             ball.Draw();
             secondplayerPaddle.Draw();
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
 
         EndDrawing();
         //----------------------------------------------------------------------------------

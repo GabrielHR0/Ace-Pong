@@ -5,22 +5,6 @@
 #include <string>
 using namespace std;
 
-<<<<<<< HEAD
-
-class Ball {
-    public:
-        float pos_x, pos_y;
-        int speed_x, speed_y;
-        int radius;
-        Color color;
-
-        Ball(float x, float y, int sx, int xy, int r, Color c);
-
-        void Draw();
-        void Update(int screenWidth, int screenHeight);
-        void Reset(int screenWidth, int screenHeight);
-        void ResetSpeed(string side);
-=======
 // Criação da classe bola, contendo todas as características dela.
 class Ball {
     public:
@@ -35,7 +19,7 @@ class Ball {
         void Update(int screenWidth, int screenHeight); // Atualiza a posiçao da bola, dentro dos limites da tela.
         void Reset(int screenWidth, int screenHeight); // Posição da bola é resetada para o centro da tela.
         void ResetSpeed(string side); // Ajuste da velocidade da bola.
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
+        char Point(int screenWidth, int screenHeight); // Verifica se foi ponto de algum jogador ou bot;
 };
 
 #endif // BALL_H

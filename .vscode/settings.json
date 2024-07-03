@@ -1,22 +1,4 @@
 {
-<<<<<<< HEAD
-	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.hg": true,
-		"**/CVS": true,
-		"**/.DS_Store": true,
-		"**/*.o": true,
-		"**/*.exe": true,
-	},
-	"files.associations": {
-		"*.embeddedhtml": "html",
-		"xstring": "cpp",
-		"iostream": "cpp",
-		"xiosbase": "cpp",
-		"ios": "cpp"
-	}
-=======
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -31,7 +13,8 @@
     "xstring": "cpp",
     "iostream": "cpp",
     "xiosbase": "cpp",
-    "ios": "cpp"
+    "ios": "cpp",
+    "string": "cpp"
   },
   "C_Cpp_Runner.msvcBatchPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat",
   "C_Cpp_Runner.cCompilerPath": "gcc",
@@ -90,5 +73,4 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false
->>>>>>> 32bd9eb53c21aa3403371fb1055a2bac4d155454
 }
