@@ -7,7 +7,7 @@ Este projeto é um jogo desenvolvido em C para a disciplina de Laboratório de I
 ## Integrantes
 - Gabriel Henrique Oliveira Jales Ramalho
 - Alex Cristhian Lima de Medeiros
-- Felipe Rezes
+- Felipe Rezes de Moura
 
 ## Objetivo do Jogo
 O objetivo do jogo consiste em fazer 11 pontos primeiro, jogando a bola para o lado adversário e ultrapassando o bot
