@@ -1,4 +1,4 @@
-/*#include "bot.h"
+#include "bot.h"
 #include "ball.h"
 #include <cstdlib> // Para std::rand() e std::srand()
 #include <ctime>   // Para std::time()
@@ -42,4 +42,3 @@ void Bot::Update(int ball_y){
 
     LimitMovement();
 };
-*/
