@@ -139,7 +139,7 @@ void jogo(string gameMode) {
                 if (gameOver) {
                     ClearBackground(DARKGRAY);
                     DrawText(winner, screenWidth / 2 - MeasureText(winner, 40) / 2, screenHeight / 2 - 20, 40, WHITE);
-                    DrawText("Pressione a tecla ESPAÇO para retornar ao MENU", screenWidth / 2 - MeasureText("Pressione a tecla ESPAÇO para retornar ao MENU", 20) / 2, screenHeight / 2 + 40, 20, WHITE);
+                    DrawText("Pressione a tecla ESPAÇO para sair do jogo.", screenWidth / 2 - MeasureText("Pressione a tecla ESPAÇO para siar do jogo.", 20) / 2, screenHeight / 2 + 80, 20, WHITE);
 
                     if(IsKeyPressed(KEY_SPACE)){
                         CloseWindow();
@@ -169,13 +169,13 @@ void instrucoes() {
     const int screenHeight = GetScreenHeight();
     while (!WindowShouldClose() && !IsKeyPressed(KEY_SPACE)) {
         BeginDrawing();
-            ClearBackground(GREEN);
+            ClearBackground(GRAY);
             DrawText("INSTRUÇÕES:", screenWidth / 2 - MeasureText("INSTRUÇÕES:", 30) / 2, 50, 30, WHITE);
             DrawText("1 - NÃO DEIXE O OPONENTE PONTUAR", 50, 100, 20, WHITE);
             DrawText("2 - CONTROLE UTILIZANDO AS SETAS DE CIMA E BAIXO OU O W/S", 50, 130, 20, WHITE);
             DrawText("3 - COMPLETE 11 PONTOS PRIMEIRO DO QUE O ADVERSÁRIO", 50, 160, 20, WHITE);
             DrawText("4 - DIVIRTA-SE!", 50, 190, 20, WHITE);
-            DrawText("Pressione a tecla ESPAÇO para retornar ao MENU", 50, 250, 20, WHITE);
+            DrawText("Pressione a tecla ESPAÇO para retornar ao MENU.", 50, 250, 20, WHITE);
         EndDrawing();
     }
 }
@@ -184,10 +184,10 @@ void menu(){
     const int screenWidth = 854;
     const int screenHeight = 480;
     InitWindow(screenWidth, screenHeight, "ACE PONG MENU");
-    Rectangle player1Button = { screenWidth / 2 - 100, 180, 200, 50 };
-    Rectangle botButton = { screenWidth / 2 - 100, 240, 200, 50 };
-    Rectangle instructionsButton = { screenWidth / 2 - 100, 300, 200, 50 };
-    Rectangle exitButton = { screenWidth / 2 - 100, 360, 200, 50 };
+    Rectangle player1Button = { screenWidth / 2 - 150, 180, 300, 50 };
+    Rectangle botButton = { screenWidth / 2 - 150, 240, 300, 50 };
+    Rectangle instructionsButton = { screenWidth / 2 - 150, 300, 300, 50 };
+    Rectangle exitButton = { screenWidth / 2 - 150, 360, 300, 50 };
     SetTargetFPS(60);
 
     
@@ -212,19 +212,19 @@ void menu(){
 
         // Draw
         BeginDrawing();
-            ClearBackground(WHITE);
+            ClearBackground(GRAY);
 
-            DrawText("ACE PONG!", screenWidth / 2 - MeasureText("ACE PONG!", 30) / 1.25, 50, 50, GREEN);
+            DrawText("ACE PONG!", screenWidth / 2 - MeasureText("ACE PONG!", 30) / 1.25, 80, 50, BLACK);
 
-            DrawRectangleRec(player1Button, GREEN);
-            DrawRectangleRec(botButton, GREEN);
-            DrawRectangleRec(instructionsButton, GREEN);
-            DrawRectangleRec(exitButton, GREEN);
+            DrawRectangleRec(player1Button, BLACK);
+            DrawRectangleRec(botButton, BLACK);
+            DrawRectangleRec(instructionsButton, BLACK);
+            DrawRectangleRec(exitButton, BLACK);
             
-            DrawText("JOGAR - 2 PLAYERS", player1Button.x + 60, player1Button.y + 15, 20, WHITE);
-            DrawText("JOGAR - 1 PLAYER", botButton.x + 60, botButton.y + 15, 20, WHITE);
-            DrawText("INSTRUÇÕES", instructionsButton.x + 30, instructionsButton.y + 15, 20, WHITE);
-            DrawText("SAIR", exitButton.x + 75, exitButton.y + 15, 20, WHITE);
+            DrawText("JOGAR - 2 PLAYERS", player1Button.x + 45, player1Button.y + 15, 20, WHITE);
+            DrawText("JOGAR - 1 PLAYER", botButton.x + 50, botButton.y + 15, 20, WHITE);
+            DrawText("INSTRUÇÕES", instructionsButton.x + 75, instructionsButton.y + 15, 20, WHITE);
+            DrawText("SAIR", exitButton.x + 120, exitButton.y + 15, 20, WHITE);
         EndDrawing();
     }
 
