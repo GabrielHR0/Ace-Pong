@@ -31,8 +31,4 @@ class Bot {
     int GetPoints() const;
 };
 
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> 3390376ff407d3d915b529996f41e423f74f6962

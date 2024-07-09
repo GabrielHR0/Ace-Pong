@@ -15,7 +15,6 @@ void Ball::Draw() { // Função que desenha a bola na tela.
 }
 
 void Ball::Update(int screenWidth, int screenHeight){ 
-
     // Atualização da posição da bola na tela, junto com o aumento da velocidade.
     pos_x += speed_x;
     pos_y += speed_y;
