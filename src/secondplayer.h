@@ -9,11 +9,14 @@ class Secondplayer {
         int speed;
         int width, height;
         Color color;
+        int points;
 
-        Secondplayer(float x, float y, int s, int w, int h, Color c);
+        Secondplayer(float x, float y, int s, int w, int h, Color c, int p);
     
     void Draw();
     void Update(int screenHeight);
+    void IncreasePoints();
+    int GetPoints() const;
 };
 
 #endif

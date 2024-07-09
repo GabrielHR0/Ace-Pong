@@ -33,10 +33,10 @@ void jogo(string gameMode) {
     SetTargetFPS(60);  // Definir o jogo para rodar a 60 fps
 
     // Criação dos objetos
-    Ball ball(screenWidth / 2, screenHeight / 2, 5, 5, 5, WHITE);
-    Secondplayer secondplayerPaddle(30, screenHeight / 2 - 25, 10, 10, 50, WHITE, 0);
-    Bot botPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
-    Player playerPaddle(screenWidth - 30, screenHeight / 2 - 25, 10, 10, 50, WHITE, 0);
+    Ball ball(screenWidth/2, screenHeight/2, 5, 5, 5, WHITE);
+    Player playerPaddle(screenWidth - 30, screenHeight/2 - 25, 10, 10, 50, WHITE);
+    Secondplayer secondplayerPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
+    //Bot botPaddle(30, screenHeight/2 - 25, 10, 10, 50, WHITE);
 
     int startTime = GetTime();
     bool gameStarted = true;
@@ -44,7 +44,6 @@ void jogo(string gameMode) {
     char winner[20];
 
     int time = 0;
-
     // Main game loop
     while (!WindowShouldClose()) {
         // Events
@@ -63,9 +62,7 @@ void jogo(string gameMode) {
             }
             ball.pos_x = playerPaddle.pos_x - ball.radius - 1;
         }
-        
-        if (gameMode == "secodplayer"){
-            if (CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{secondplayerPaddle.pos_x, secondplayerPaddle.pos_y, (float)secondplayerPaddle.width, (float)secondplayerPaddle.height})) {
+        if(CheckCollisionCircleRec(Vector2{ball.pos_x, ball.pos_y}, ball.radius, Rectangle{secondplayerPaddle.pos_x, secondplayerPaddle.pos_y, (float)secondplayerPaddle.width, (float)secondplayerPaddle.height})) {
             ball.speed_x *= -1;
             float secondplayerCenterY = secondplayerPaddle.pos_y + secondplayerPaddle.height / 2;
             ball.speed_y = (ball.pos_y - secondplayerCenterY) / (secondplayerPaddle.height / 2) * 5;
@@ -89,117 +86,20 @@ void jogo(string gameMode) {
             
             // Ajusta a posição da bola para fora da raquete para evitar múltiplas detecções
             ball.pos_x = botPaddle.pos_x + botPaddle.width / 2 + ball.radius + 1;
-            }
         }
-        
+        */
+       
+        cout << playerPaddle.pos_y << endl;
+        //----------------------------------------------------------------------------------
 
-        // Verificação de pontos
-        char point = ball.Point(screenWidth, screenHeight);
-        if (point == 'l') {
-            secondplayerPaddle.IncreasePoints();  // Aumenta os pontos do jogador esquerdo
-        } else if (point == 'r') {
-            playerPaddle.IncreasePoints();  // Aumenta os pontos do jogador direito
-        }
+        // Update
+        //----------------------------------------------------------------------------------
+        ball.Update(screenWidth, screenHeight);
+        playerPaddle.Update(screenHeight);
+        //botPaddle.Update(ball.pos_y);
+        secondplayerPaddle.Update(screenHeight);
 
-        // Verifica se algum jogador atingiu 11 pontos
-
-
-        if (playerPaddle.GetPoints() == 11 || secondplayerPaddle.GetPoints() == 11 || botPaddle.GetPoints() == 11) {
-            gameOver = true;
-            gameStarted = false;
-            if (playerPaddle.GetPoints() == 11) {
-                snprintf(winner, sizeof(winner), "Player 1 Ganhou!");
-            } else if (secondplayerPaddle.GetPoints() == 11) {
-                snprintf(winner, sizeof(winner), "Player 2 Ganhou!");
-            } else {
-                snprintf(winner, sizeof(winner), "Bot Ganhou!");
-            }
-        }
-        if (gameOver) {
-            // Draw Game Over screen
-            BeginDrawing();
-                ClearBackground(DARKGRAY);
-                DrawText(winner, screenWidth / 2 - MeasureText(winner, 40) / 2, screenHeight / 2 - 20, 40, WHITE);
-                DrawText("Pressione ESPAÇO para sair", screenWidth / 2 - MeasureText("Pressione ESPAÇO para sair", 20) / 2, screenHeight / 2 + 40, 20, WHITE);
-            EndDrawing();
-
-            if(IsKeyPressed(KEY_SPACE)){
-                break;  // Sai do loop principal e termina o jogo
-            }
-        }else{
-            // Update
-            ball.Update(screenWidth, screenHeight);
-            playerPaddle.Update(screenHeight);
-            if (gameMode =="secondplayer"){
-                secondplayerPaddle.Update(screenHeight);
-            }
-            if (gameMode == "bot"){ 
-                botPaddle.Update(ball.pos_y);
-            }
-
-            // Draw
-            BeginDrawing();
-                ClearBackground(DARKGRAY);
-                DrawDashedLine(screenWidth / 2, -4, screenHeight, 14, 11, WHITE);
-                DrawTime(time, screenWidth);
-                DrawPoints(screenWidth, playerPaddle, secondplayerPaddle);
-                if (gameMode == "bot"){
-                    botPaddle.Draw();
-                }
-                if (gameMode == "secondplayer"){
-                    secondplayerPaddle.Draw();
-                }
-                playerPaddle.Draw();
-                ball.Draw();
-            EndDrawing();
-        }
-    }
-    CloseWindow();  // Fecha a janela e o OPEN GL
-}
-
-void instrucoes() {
-    const int screenWidth = 854;
-    const int screenHeight = 480;
-    while (!WindowShouldClose() && !IsKeyPressed(KEY_SPACE)) {
-        BeginDrawing();
-            ClearBackground(GREEN);
-            DrawText("INSTRUÇÕES:", screenWidth / 2 - MeasureText("INSTRUÇÕES:", 30) / 2, 50, 30, WHITE);
-            DrawText("1 - NÃO DEIXE O OPONENTE PONTUAR", 50, 100, 20, WHITE);
-            DrawText("2 - CONTROLE UTILIZANDO AS SETAS DE CIMA E BAIXO OU O W/S", 50, 130, 20, WHITE);
-            DrawText("3 - COMPLETE 11 PONTOS PRIMEIRO DO QUE O ADVERSÁRIO", 50, 160, 20, WHITE);
-            DrawText("4 - DIVIRTA-SE!", 50, 190, 20, WHITE);
-            DrawText("Pressione a tecla ESPAÇO para retornar ao MENU", 50, 250, 20, WHITE);
-        EndDrawing();
-    }
-}
-
-int main(void) {
-    const int screenWidth = 854;
-    const int screenHeight = 480;
-    InitWindow(screenWidth, screenHeight, "ACE PONG MENU");
-    Rectangle player1Button = { screenWidth / 2 - 100, 290, 200, 50 };
-    Rectangle botButton = { screenWidth / 2 - 100, 290, 200, 50 };
-    Rectangle instructionsButton = { screenWidth / 2 - 100, 220, 200, 50 };
-    Rectangle exitButton = { screenWidth / 2 - 100, 290, 200, 50 };
-    SetTargetFPS(60);
-
-    while (!WindowShouldClose()) {
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            Vector2 mousePoint = GetMousePosition();
-
-            if (CheckCollisionPointRec(mousePoint, player1Button)) {
-                jogo("secondplayer");
-            }
-            if (CheckCollisionPointRec(mousePoint, botButton)) {
-                jogo("bot");
-            }
-            if (CheckCollisionPointRec(mousePoint, instructionsButton)) {
-                instrucoes();
-            }
-            if (CheckCollisionPointRec(mousePoint, exitButton)) {
-                break;
-            }
-        }
+        //----------------------------------------------------------------------------------
 
         // Draw
         BeginDrawing();
@@ -217,8 +117,13 @@ int main(void) {
             DrawText("INSTRUÇÕES", instructionsButton.x + 30, instructionsButton.y + 15, 20, WHITE);
             DrawText("SAIR", exitButton.x + 75, exitButton.y + 15, 20, WHITE);
         EndDrawing();
+        //----------------------------------------------------------------------------------
     }
 
-    CloseWindow();
+    // De-Initialization
+    //--------------------------------------------------------------------------------------
+    CloseWindow();        // Fecha a janela e o OPEN GL
+    //--------------------------------------------------------------------------------------
+
     return 0;
 }

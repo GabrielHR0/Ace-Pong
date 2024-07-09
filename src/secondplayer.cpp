@@ -1,12 +1,13 @@
 #include "secondplayer.h"
 
-Secondplayer::Secondplayer(float x, float y,  int s, int w, int h, Color c){
+Secondplayer::Secondplayer(float x, float y,  int s, int w, int h, Color c, int p){
     pos_x = x;
     pos_y = y;
     speed = s;
     width = w;
     height = h;
     color = c;
+    points = p;
 }
 
 void Secondplayer::Draw(){
@@ -22,4 +23,12 @@ void Secondplayer::Update(int screenHeight){
     if (IsKeyDown(KEY_S) && pos_y < screenHeight - height){
         pos_y += speed;
     }
+}
+
+void Secondplayer::IncreasePoints(){
+    points++;
+}
+
+int Secondplayer::GetPoints() const {
+    return points;
 }

@@ -3,7 +3,7 @@
 #include <cstdlib> // Para std::rand() e std::srand()
 #include <ctime>   // Para std::time()
 
-Bot::Bot(float x, float y,  int s, int w, int h, Color c){
+Bot::Bot(float x, float y,  int s, int w, int h, Color c, int p){
     pos_x = x;
     pos_y = y;
     speed = s;
@@ -17,8 +17,9 @@ void Bot::Draw(){
     // x position screenWidth - largura + padding | y position screenHeigth/2 - altura/2 | largura | altura | cor
 }
 
-void Bot::Update(int ball_y){
-    std::srand(std::time(0));
+void Bot::Update(int ball_y, int ball_x){
+    if (ball_x < GetScreenWidth()/2 -2){
+        std::srand(std::time(0));
     // Fator de variação aleatória
     int random_factor = std::rand() % 10 - 5; // Gera um número entre -5 e 4
 
@@ -41,4 +42,17 @@ void Bot::Update(int ball_y){
     }
 
     LimitMovement();
+<<<<<<< HEAD
 };
+=======
+}
+};
+    
+void Bot::IncreasePoints(){
+    points++;
+}
+
+int Bot::GetPoints() const {
+    return points;
+}
+>>>>>>> 3390376ff407d3d915b529996f41e423f74f6962
