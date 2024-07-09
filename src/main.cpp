@@ -44,7 +44,6 @@ void jogo(string gameMode) {
     char winner[20];
 
     int time = 0;
-
     // Main game loop
     while (!WindowShouldClose()) {
         // Events
@@ -158,8 +157,8 @@ void jogo(string gameMode) {
 }
 
 void instrucoes() {
-    const int screenWidth = 854;
-    const int screenHeight = 480;
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
     while (!WindowShouldClose() && !IsKeyPressed(KEY_SPACE)) {
         BeginDrawing();
             ClearBackground(GREEN);
@@ -190,18 +189,16 @@ void menu(){
 
             if (CheckCollisionPointRec(mousePoint, player1Button)) {
                 jogo("secondplayer");
-                
             }
             if (CheckCollisionPointRec(mousePoint, botButton)) {
                 jogo("bot");
-                
             }
             if (CheckCollisionPointRec(mousePoint, instructionsButton)) {
                 instrucoes();
-                
             }
             if (CheckCollisionPointRec(mousePoint, exitButton)) {
-                
+                CloseWindow();
+                break;
             }
         }
 
