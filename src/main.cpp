@@ -174,8 +174,9 @@ void instrucoes() {
             DrawText("1 - NÃO DEIXE O OPONENTE PONTUAR", 50, 100, 20, WHITE);
             DrawText("2 - CONTROLE UTILIZANDO AS SETAS DE CIMA E BAIXO OU O W/S", 50, 130, 20, WHITE);
             DrawText("3 - COMPLETE 11 PONTOS PRIMEIRO DO QUE O ADVERSÁRIO", 50, 160, 20, WHITE);
-            DrawText("4 - DIVIRTA-SE!", 50, 190, 20, WHITE);
-            DrawText("Pressione a tecla ESPAÇO para retornar ao MENU.", 50, 250, 20, WHITE);
+            DrawText("4 - USE A TECLA P PARA PAUSAR O JOGO", 50, 190, 20, WHITE);
+            DrawText("5 - DIVIRTA-SE!", 50, 210, 20, WHITE);
+            DrawText("Pressione a tecla ESPAÇO para retornar ao MENU.", 50, 290, 20, WHITE);
         EndDrawing();
     }
 }
