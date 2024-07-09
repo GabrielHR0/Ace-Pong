@@ -13,7 +13,7 @@ class Ball {
         int radius; // Tamanho da bola.
         Color color; // Cor da bola.
 
-        Ball(float x, float y, int sx, int xy, int r, Color c);
+        Ball(float x, float y, int sx, int sy, int r, Color c);
         
         void Draw(); // Desenha a bola na tela.
         void Update(int screenWidth, int screenHeight); // Atualiza a posiçao da bola, dentro dos limites da tela.

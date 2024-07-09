@@ -1,4 +1,4 @@
-/*#ifndef BOT_H
+#ifndef BOT_H
 #define BOT_H
 #include <raylib.h>
 #include "ball.h"
@@ -21,12 +21,14 @@ class Bot {
         int speed;  
         int width, height;
         Color color;
+        int points;
 
-        Bot(float x, float y, int s, int w, int h, Color c);
+        Bot(float x, float y, int s, int w, int h, Color c, int p);
     
     void Draw(); // Desenho do bot.
-    void Update(int ball_pos_y); // Atualização da posição do bot, dependendo da posição vertical da bola.
+    void Update(int ball_pos_y, int ball_pos_x); // Atualização da posição do bot, dependendo da posição vertical da bola.
+    void IncreasePoints(); // Novo método para aumentar os pontos
+    int GetPoints() const;
 };
 
 #endif
-*/
