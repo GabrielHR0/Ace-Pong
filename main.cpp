@@ -133,7 +133,7 @@ void jogo(string gameMode) {
             if (gameMode =="secondplayer"){
                 secondplayerPaddle.Update(screenHeight);
             }
-            if (gameMode == "bot"){ 
+            if (gameMode == "bot"){
                 botPaddle.Update(ball.pos_y);
             }
 
