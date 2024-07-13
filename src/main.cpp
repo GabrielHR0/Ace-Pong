@@ -139,7 +139,7 @@ void jogo(string gameMode) {
                 if (gameOver) {
                     ClearBackground(DARKGRAY);
                     DrawText(winner, screenWidth / 2 - MeasureText(winner, 40) / 2, screenHeight / 2 - 20, 40, WHITE);
-                    DrawText("Pressione a tecla ESPAÇO para sair do jogo.", screenWidth / 2 - MeasureText("Pressione a tecla ESPAÇO para siar do jogo.", 20) / 2, screenHeight / 2 + 80, 20, WHITE);
+                    DrawText("Pressione a tecla ESPAÇO para sair do jogo.", screenWidth / 2 - MeasureText("Pressione a tecla ESPAÇO para sair do jogo.", 20) / 2, screenHeight / 2 + 80, 20, WHITE);
 
                     if(IsKeyPressed(KEY_SPACE)){
                         CloseWindow();
