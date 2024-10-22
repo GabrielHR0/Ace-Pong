@@ -18,12 +18,4 @@ ou o outro jogador
 - Sistema de pontuação.
 - Bot que joga contra o player.
 
-## Requisitos
-...
-
-## Compilação e Execução
-...
-
-### Compilação
-...
 =======
